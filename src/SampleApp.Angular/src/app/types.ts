@@ -1,0 +1,1 @@
+export type ApiRoute = "csp" | "values"

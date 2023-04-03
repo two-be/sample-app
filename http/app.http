@@ -1,0 +1,6 @@
+@host = http://localhost:5161
+
+###
+GET {{host}}/api/csp
+###
+GET {{host}}/api/values
