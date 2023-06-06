@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from "@angular/core"
+import { Component, OnDestroy, OnInit } from "@angular/core"
 
 import { BaseComponent } from "./abstracts"
 import { AppService } from "./app.service"
@@ -8,7 +8,7 @@ import { AppService } from "./app.service"
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent extends BaseComponent implements OnDestroy {
+export class AppComponent extends BaseComponent implements OnDestroy, OnInit {
 
   constructor(private service: AppService) {
     super()
@@ -30,6 +30,20 @@ export class AppComponent extends BaseComponent implements OnDestroy {
     } catch (err) {
       this.error(err)
     }
+  }
+
+  getBrowserInfo() {
+    this.log(navigator)
+  }
+
+  ngOnInit() {
+    let listOfA = document.getElementsByClassName("link")
+    Array.from(listOfA).forEach(x => {
+      x.addEventListener("click", y => {
+        y.preventDefault()
+        this.log(y.target["href"])
+      })
+    })
   }
 
   async post() {
