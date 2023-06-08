@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core"
+import { Component, Host, HostListener, OnDestroy, OnInit } from "@angular/core"
 
 import { BaseComponent } from "./abstracts"
 import { AppService } from "./app.service"
@@ -44,6 +44,20 @@ export class AppComponent extends BaseComponent implements OnDestroy, OnInit {
         this.log(y.target["href"])
       })
     })
+  }
+
+  isOnline = true
+
+  @HostListener("window:offline", ["$event"])
+  offline(e) {
+    this.log("offline")
+    this.log(e)
+  }
+
+  @HostListener("window:online", ["$event"])
+  online(e) {
+    this.isOnline = true
+    this.log(e)
   }
 
   async post() {
